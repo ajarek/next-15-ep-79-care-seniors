@@ -1,20 +1,32 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { great_vibes } from '@/app/layout' 
+import ContactBlock from '@/components/ContactBlock'
 export default function Home() {
   return (
-    <main className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-start px-24">
-      <div className='relative w-full h-[500px] '>
-        <Image src='/images/baner.jpg'width={1100} height={500} alt="baner" className="object-cover rounded-lg" />
-        <div className='w-full h-full absolute top-0 left-0  flex *:z-20 flex-col items-center justify-end text-center p-4 gap-2'>
-         <h1 className='text-4xl font-bold text-white'>Witamy na naszej stronie internetowej</h1>
-          <p className='text-lg text-white'>Znajdziesz tu informacje o naszej firmie i naszych usługach</p>
-          <Button className=''>Dowiedz się więcej</Button>
+    <main className='flex min-h-[calc(100vh)] flex-col items-center justify-start px-4'>
+      <div className='relative w-full flex justify-center  '>
+        <Image
+          src='/images/baner.jpg'
+          width={1100}
+          height={463}
+          alt='baner'
+          priority
+          className='w-full h-full object-cover rounded-lg'
+        />
+        <div className={`${great_vibes.className}  absolute inset-0 flex flex-col items-center justify-end pb-4 gap-4 z-20`}>
+          <h1 className='text-5xl max-sm:text-6xl tracking-wider text-center font-bold text-white'>
+            Witamy na naszej stronie internetowej
+          </h1>
+          <p className='text-2xl tracking-wider text-white max-sm:hidden'>
+            Znajdziesz tu informacje o naszej firmie i naszych usługach
+          </p>
+          <Button className='text-2xl'>Dowiedz się więcej</Button>
         </div>
-          <div className="absolute top-0   bg-slate-900 z-10 opacity-40  w-full h-full"></div>
-        
+        <div className='absolute top-0   bg-black z-10 opacity-60  w-full h-full'></div>
       </div>
-     
-      </main>
-  );
+     <ContactBlock/>
+    </main>
+    
+  )
 }
