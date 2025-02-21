@@ -1,51 +1,132 @@
-import React from 'react'
-import { Label } from './ui/label'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Button } from './ui/button'
-import { ArrowUpRight } from 'lucide-react'
+'use client'
 
-const ContactBlock = () => {
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Mail,  Check } from 'lucide-react'
+import MotionButton from '@/components/MotionButton'
+import { console } from 'node:inspector'
+
+export default function ContactBlock() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {}
+
+    if (!name.trim()) {
+      newErrors.name = 'Name is required'
+    }
+    if (!email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Email is invalid'
+    }
+    if (!message.trim()) {
+      newErrors.message = 'Message is required'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+  
+    if (validateForm()) {
+      
+      setIsSubmitted(true)
+      
+      // Reset form fields after submission
+      setName('')
+      setEmail('')
+      setMessage('')
+      setErrors({})
+    }
+  }
+
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full p-4 0 bg-green-300 text-black gap-4'>
-      <h2>Napisz do nas!</h2>
-      <form
-        action='https://formspree.io/f/xpzebqjz'
-        className='w-full flex flex-col items-center gap-4  '
-       
-      >
-        <div className='w-full flex items-center gap-4'>
-          
-          <Input
-            type='text'
-            name='name'
-            placeholder='Nazwisko i imię'
-            className='border border-gray-800 text-black'
-          />
-         
-          <Input
-            type='email'
-            name='email'
-            placeholder='Email'
-             className='border border-gray-800 text-black'
-          />
-          
-          <Input
-            type='phone'
-            name='phone'
-            placeholder='Telefon'
-             className='border border-gray-800 text-black'
-          />
-        </div>
-        <div className='w-full flex items-center gap-4'>
-
-        <Textarea name='message' placeholder='Wiadomość'  className='border border-gray-800 text-black' />
-        <button type='submit'  ><ArrowUpRight size={48} className='w-12 h-12 rounded-full bg-primary text-background shadow-lg hover:scale-110 transition-all duration-300 ease-in-out hover:rotate-45 hover:bg-green-500 hover:text-white'/></button>
-
-        </div>
-      </form>
+    <div className='w-full flex items-center justify-center p-4  rounded-lg'>
+      <div className='w-full   p-8 rounded-lg '>
+        <h1 className='text-2xl font-bold mb-6 flex items-center'>
+          <Mail className='mr-2 h-6 w-6' /> Kontakt
+        </h1>
+        {isSubmitted ? (
+          <div className='flex flex-col items-center justify-center space-y-4'>
+            <Check className='h-12 w-12 text-green-500' />
+            <p className='text-lg text-center font-semibold capitalize'>
+              {name} Dziękujemy za wiadomość!
+            </p>
+            <Button
+              onClick={() => setIsSubmitted(false)}
+              className='mt-4 hover:bg-primary hover:scale-110 transition-all duration-1000 ease-in-out'
+            >
+              Wyślij kolejną wiadomość
+            </Button>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className='space-y-4 '
+          >
+            <div className='w-full flex items-center gap-4'>
+              <div className='w-full space-y-2'>
+                
+                <Input
+                  id='name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={errors.name ? 'border-red-500' : ''}
+                  placeholder='Imię i nazwisko'
+                />
+                {errors.name && (
+                  <p className='text-sm text-red-500 mt-1'>{errors.name}</p>
+                )}
+              </div>
+              <div className='w-full space-y-2'>
+                
+                <Input
+                  id='email'
+                  type='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={errors.name ? 'border-red-500' : ''}
+                  placeholder='Email'
+                />
+                {errors.email && (
+                  <p className='text-sm text-red-500 mt-1'>{errors.email}</p>
+                )}
+              </div>
+            </div>
+            <div className='flex items-center gap-4 '>
+              <div className='w-full space-y-2'>
+                
+                <Textarea
+                  id='message'
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className={errors.message ? 'border-red-500' : ''}
+                  autoFocus
+                  placeholder='Wiadomość'
+                />
+                {errors.message && (
+                  <p className='text-sm text-red-500 mt-1'>{errors.message}</p>
+                )}
+              </div>
+              <div className=' flex flex-col items-center justify-center'>
+                <MotionButton
+                  typeButton='submit'
+                  label=''
+                />
+              </div>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   )
 }
-
-export default ContactBlock
