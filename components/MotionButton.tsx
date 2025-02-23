@@ -1,7 +1,6 @@
 import * as motion from 'motion/react-client'
-
 import { Button } from '@/components/ui/button'
-import { TrendingUp } from 'lucide-react'
+
 type PropsButton = {
   label: string
   typeButton: 'button' | 'submit' | 'reset' | undefined
@@ -18,11 +17,12 @@ const MotionButton = ({ label, typeButton }: PropsButton) => {
       transition={{ duration: 0.5 }}
     >
       <Button
+        size={'icon'}
         type={typeButton}
         aria-label={label}
-        className='hover:bg-primary'
+        className='hover:bg-primary w-14 h-14 rounded-full flex items-center justify-center text-4xl '
       >
-        {label} <TrendingUp size={32} />
+        {label}
       </Button>
     </motion.div>
   )

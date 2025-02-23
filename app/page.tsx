@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { great_vibes } from '@/app/layout' 
 import ContactBlock from '@/components/ContactBlock'
+import StatsSection from '@/components/StatsSection'
 export default function Home() {
   return (
     <main className='flex min-h-[calc(100vh)] flex-col items-center justify-start px-4 pb-8 gap-4'>
@@ -25,6 +26,7 @@ export default function Home() {
         </div>
         <div className='absolute top-0   bg-black z-10 opacity-60  w-full h-full'></div>
       </div>
+      <StatsSection/>
      <ContactBlock/>
     </main>
     
