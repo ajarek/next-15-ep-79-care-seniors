@@ -3,10 +3,14 @@ import Image from 'next/image'
 import { great_vibes } from '@/app/layout' 
 import ContactBlock from '@/components/ContactBlock'
 import StatsSection from '@/components/StatsSection'
+import Carousel from '@/components/Carousel'
+import { images} from '@/data/dataImages'
+
+
 export default function Home() {
   return (
     <main className='flex min-h-[calc(100vh)] flex-col items-center justify-start px-4 pb-8 gap-4'>
-      <div className='relative w-full flex justify-center  '>
+      <div className='relative w-full flex justify-center rounded-lg overflow-hidden   '>
         <Image
           src='/images/baner.jpg'
           width={1100}
@@ -24,8 +28,9 @@ export default function Home() {
           </p>
           <Button className='text-2xl'>Dowiedz się więcej</Button>
         </div>
-        <div className='absolute top-0   bg-black z-10 opacity-60  w-full h-full'></div>
+        <div className='absolute top-0   bg-black z-10 opacity-50  w-full h-full'></div>
       </div>
+      <Carousel images={images} />
       <StatsSection/>
      <ContactBlock/>
     </main>

@@ -85,7 +85,7 @@ export default function ContactBlock() {
             onSubmit={handleSubmit}
             className='space-y-4 '
           >
-            <div className='w-full flex items-center gap-4'>
+            <div className='w-full flex flex-wrap items-center gap-4'>
               <div className='w-full space-y-2'>
                 <Input
                   id='name'
