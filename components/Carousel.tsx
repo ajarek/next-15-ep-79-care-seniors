@@ -13,9 +13,10 @@ interface Image {
 interface CarouselProps {
   images: Image[];
   autoPlayInterval?: number;
+  family:string
 }
 
-export default function Carousel({ images, autoPlayInterval = 5000 }: CarouselProps) {
+export default function Carousel({ images, autoPlayInterval = 5000, family }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -102,7 +103,7 @@ export default function Carousel({ images, autoPlayInterval = 5000 }: CarouselPr
             />
             {image.caption && (
               <div className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 md:p-4">
-                <p className="text-sm md:text-base">{image.caption}</p>
+                <p className={`${family} text-2xl max-sm:text-xl `} >{image.caption}</p>
               </div>
             )}
           </div>

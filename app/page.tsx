@@ -30,9 +30,9 @@ export default function Home() {
         </div>
         <div className='absolute top-0   bg-black z-10 opacity-50  w-full h-full'></div>
       </div>
-      <Carousel images={images} />
-      <StatsSection/>
-     <ContactBlock/>
+      <Carousel images={images} family={great_vibes.className}/>
+      <StatsSection family={great_vibes.className}/>
+     <ContactBlock family={great_vibes.className}/>
     </main>
     
   )

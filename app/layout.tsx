@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Great_Vibes} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,25 @@ export default function RootLayout({
           >
       <Navbar/>
         {children}
+        <Footer 
+        logoUrl="/images/logo.png"
+        companyName="Pogodna Jesień"
+        email="kontakt@pogodna.pl"
+        phone="+48 573 219 230"
+        address="ul. Spokojna 123, 78-100 Kołobrzeg"
+        family={great_vibes.className}
+        socialLinks={{
+          facebook: "https://facebook.com/mojafirma",
+          instagram: "https://instagram.com/mojafirma",
+          linkedin: "https://linkedin.com/company/mojafirma"
+        }}
+        quickLinks={[
+          { title: "Główna", href: "/" },
+          { title: "O nas", href: "/about" },
+          { title: "Kontakt", href: "/contact" }
+          
+        ]}
+      />
         </ThemeProvider>
       </body>
     </html>

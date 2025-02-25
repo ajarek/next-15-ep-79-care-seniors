@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Mail, Check } from 'lucide-react'
 import MotionButton from '@/components/MotionButton'
 
-export default function ContactBlock() {
+export default function ContactBlock({family}:{family:string}) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -64,18 +64,18 @@ export default function ContactBlock() {
   return (
     <div className='w-full flex items-center justify-center p-4 border-2 rounded-lg'>
       <div className='w-full   p-8 rounded-lg '>
-        <h1 className='text-2xl font-bold mb-6 flex items-center'>
+        <h1 className={`${family } text-2xl font-bold mb-6 flex items-center`}>
           <Mail className='mr-2 h-6 w-6' /> Kontakt
         </h1>
         {isSubmitted ? (
-          <div className='flex flex-col items-center justify-center space-y-4'>
+          <div className={`${family } flex flex-col items-center justify-center space-y-4`}>
             <Check className='h-12 w-12 text-green-500' />
-            <p className='text-lg text-center font-semibold capitalize'>
+            <p className='text-xl text-center font-semibold capitalize'>
               {name} Dziękujemy za wiadomość!
             </p>
             <Button
               onClick={handleReset}
-              className='mt-4 hover:bg-primary hover:scale-110 transition-all duration-1000 ease-in-out'
+              className='mt-4 text-xl hover:bg-primary hover:scale-110 transition-all duration-1000 ease-in-out'
             >
               Wyślij kolejną wiadomość
             </Button>
@@ -83,9 +83,9 @@ export default function ContactBlock() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className='space-y-4 '
+            className={`space-y-4 `}
           >
-            <div className='w-full flex flex-wrap items-center gap-4'>
+            <div className={`${family }  w-full flex flex-wrap items-center gap-4`}>
               <div className='w-full space-y-2'>
                 <Input
                   id='name'
@@ -115,14 +115,13 @@ export default function ContactBlock() {
               </div>
             </div>
             <div className='flex items-center gap-4 '>
-              <div className='w-full space-y-2'>
+              <div className={`${family }  w-full space-y-2`}>
                 <Textarea
                   id='message'
                   name='message'
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className={errors.message ? 'border-red-500' : ''}
-                  autoFocus
+                  className={` ${errors.message ? 'border-red-500  ' : ''} `}
                   placeholder='Wiadomość'
                 />
                 {errors.message && (
