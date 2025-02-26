@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Mail, Check } from 'lucide-react'
 import MotionButton from '@/components/MotionButton'
 
-export default function ContactBlock({family}:{family:string}) {
+export default function ContactBlock({ family }: { family: string }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -64,11 +64,13 @@ export default function ContactBlock({family}:{family:string}) {
   return (
     <div className='w-full flex items-center justify-center p-4 border-2 rounded-lg'>
       <div className='w-full   p-8 rounded-lg '>
-        <h1 className={`${family } text-2xl font-bold mb-6 flex items-center`}>
+        <h1 className={`${family} text-2xl font-bold mb-6 flex items-center`}>
           <Mail className='mr-2 h-6 w-6' /> Kontakt
         </h1>
         {isSubmitted ? (
-          <div className={`${family } flex flex-col items-center justify-center space-y-4`}>
+          <div
+            className={`${family} flex flex-col items-center justify-center space-y-4`}
+          >
             <Check className='h-12 w-12 text-green-500' />
             <p className='text-xl text-center font-semibold capitalize'>
               {name} Dziękujemy za wiadomość!
@@ -85,7 +87,9 @@ export default function ContactBlock({family}:{family:string}) {
             onSubmit={handleSubmit}
             className={`space-y-4 `}
           >
-            <div className={`${family }  w-full flex flex-wrap items-center gap-4`}>
+            <div
+              className={`${family}  w-full flex flex-wrap items-center gap-4`}
+            >
               <div className='w-full space-y-2'>
                 <Input
                   id='name'
@@ -115,7 +119,7 @@ export default function ContactBlock({family}:{family:string}) {
               </div>
             </div>
             <div className='flex items-center gap-4 '>
-              <div className={`${family }  w-full space-y-2`}>
+              <div className={`${family}  w-full space-y-2`}>
                 <Textarea
                   id='message'
                   name='message'
@@ -128,12 +132,11 @@ export default function ContactBlock({family}:{family:string}) {
                   <p className='text-sm text-red-500 mt-1'>{errors.message}</p>
                 )}
               </div>
-              
-                <MotionButton
-                  typeButton='submit'
-                  label='📩'
-                />
-              
+
+              <MotionButton
+                typeButton='submit'
+                label='📩'
+              />
             </div>
           </form>
         )}

@@ -16,10 +16,11 @@ const NotFoundPage = () => {
         priority
       />
       <h1 className='text-center text-xl font-semibold'>
-      The specified page could not be found.
+        Nie można znaleźć określonej strony.
       </h1>
       <p className='text-center'>
-      The page you are looking for may have been removed, had its name changed, or is temporarily unavailable.
+        Szukana strona może zostać usunięta, zmienić nazwę lub tymczasowo
+        niedostępna.
       </p>
       <div className=''>
         <Button
@@ -29,7 +30,7 @@ const NotFoundPage = () => {
           aria-label='Go tony głównej'
           className='hover:bg-primary/80'
         >
-          Back to main page
+          Powrót do strony głównej
         </Button>
       </div>
     </div>

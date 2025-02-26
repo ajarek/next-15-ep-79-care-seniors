@@ -95,6 +95,7 @@ export default function ContactForm({family}:{family:string}) {
               </Label>
               <Input
                 id='name'
+                name='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={`${family } ${errors.name ? 'border-red-500 ' : ''}`}
@@ -113,6 +114,7 @@ export default function ContactForm({family}:{family:string}) {
               <Input
                 id='email'
                 type='email'
+                name='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`${family } ${errors.name ? 'border-red-500 ' : ''}`}
@@ -131,6 +133,7 @@ export default function ContactForm({family}:{family:string}) {
               <Textarea
                 id='message'
                 value={message}
+                name='message'
                 onChange={(e) => setMessage(e.target.value)}
                 className={`${family } ${errors.name ? 'border-red-500 ' : ''}`}
                 autoFocus
